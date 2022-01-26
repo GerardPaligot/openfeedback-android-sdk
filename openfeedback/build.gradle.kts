@@ -1,32 +1,25 @@
-import com.android.build.gradle.BaseExtension
-
 plugins {
     id("com.android.library")
-    id("kotlin-android")
+    kotlin("android")
 }
 
-extensions.findByType(BaseExtension::class.java)!!.apply {
-    compileSdkVersion(29)
-    defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(29)
-        versionCode = 1
-        versionName = "1"
-    }
+android {
+    compileSdk = 31
 
     defaultConfig {
-        consumerProguardFiles.add(file("openfeedback-proguard-rules.txt"))
+        minSdk = 21
+        targetSdk = 31
     }
 
     compileOptions {
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
-
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
@@ -43,4 +36,3 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:19.2.0")
     implementation("com.google.firebase:firebase-firestore-ktx:21.4.0")
 }
-

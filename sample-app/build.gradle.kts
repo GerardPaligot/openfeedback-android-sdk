@@ -2,26 +2,28 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
 }
-extensions.findByType(com.android.build.gradle.BaseExtension::class.java)!!.apply {
-    compileSdkVersion(29)
+
+android {
+    compileSdk = 31
+
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(29)
+        minSdk = 21
+        targetSdk = 31
         versionCode = 1
         versionName = "1"
     }
 
     compileOptions {
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     buildFeatures.compose = true
 }
 
-
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
